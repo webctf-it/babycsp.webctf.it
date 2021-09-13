@@ -1,0 +1,26 @@
+version: "3.5"
+services:
+  babycsp:
+    restart: always
+    build: './'
+    read_only: true
+    tmpfs:
+        - /tmp
+    ports:
+        - "127.0.0.1:2080:5000"
+    environment:
+        - CHALLENGE_FLAG=flag{fake_flag}
+    logging:
+        driver: "json-file"
+        options:
+            max-file: "1"
+            max-size: "10m"
+    healthcheck:
+        test: "curl --silent --fail http://127.0.0.1:5000/ || exit 1"
+        timeout: 10s
+        interval: 1m30s
+        retries: 2
+networks:
+    default:
+        driver_opts:
+            com.docker.network.bridge.name: babycsp

@@ -1,0 +1,8 @@
+__pycache__
+*.pyc
+bin
+lib
+include
+pip-selfcheck.json
+geckodriver.log
+docker-compose.override.yml
